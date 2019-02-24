@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='jquery-1.12.2.js'></script>
+    <script>
+        function random(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min)
+        }
+
+        function randomColor() {
+            var color = '#';
+            for (i = 0; i < 3; i++) {
+                var n = random(0, 255);
+                if (n == 0) {
+                    n = '00'
+                } else if (n > 15) {
+                    n = n.toString(16)
+                }
+                color += n;
+            }
+            return color;
+        }
+        //
+        var ops = ['郭志浩', '李斯宇', '怯鹏瑶', '李曼曼', '叶水姣', '陈明', '牛文阳', '魏安南'];
+        $(function () {
+            $(document).mousedown(function (e) {
+                var i = random(0, ops.length - 1);
+                var $span = $('<strong>' + ops[i] + '</strong>')
+                $span.appendTo($('body')).css({
+                    'display': 'block',
+                    'width': '70px',
+                    'height': '68px',
+                    'backgroundImage': 'url(image/5202.png)',
+                    'border-radius': '35px',
+                    'text-align': 'center',
+                    'lineHeight': '68px',
+                    'color': randomColor(),
+                    'position': 'fixed',
+                    'left': e.clientX - $span.width() / 2 + 'px',
+                    'top': e.clientY - $span.height() / 2 + 'px',
+                    'z-index': 9999
+                }).animate(({
+                    'opacity': 0,
+                    'top': e.clientY - 250 + 'px'
+                }), 2000, function () {
+                    $span.remove()
+                })
+                // $span.appendTo($('body')).css({
+                //     'color': randomColor(),
+                //     'position': 'fixed',
+                //     'left': e.clientX - $span.width() / 2 + 'px',
+                //     'top': e.clientY - $span.height() / 2 + 'px',
+                //     'z-index': 9999
+                // }).animate(({
+                //     'opacity': 0,
+                //     'top': e.clientY - 150 + 'px'
+                // }), 1500, function () {
+                //     $span.remove()
+                // }) 
+                // var $img = $('<img src="image/5202.png"/>');
+                // $img.appendTo($('body')).css({
+                //     'position': 'fixed',
+                //     'left': e.clientX - $img.width() / 2 + 'px',
+                //     'top': e.clientY - $img.height() / 2 + 'px',
+                //     'z-index': 9998
+                // }).animate(({
+                //     'opacity': 0,
+                //     'top': e.clientY - 150 + 'px'
+                // }), 1500, function () {
+                //     $img.remove()
+                // })
+            })
+        })
+    </script>
+</head>
+
+<body>
+</body>
+<script>
+    // document.onmousemove = function (e) {
+    //     x = e.clientX;
+    //     y = e.clientY;
+    // }
+    // document.onmousedown = function (e) {
+    //     var i = random(0, ops.length - 1);
+    //     var span = $('<span>' + ops[i] + '</span>')
+    //     // console.log(span)
+    //     span.appendTo($('body'))
+    // }
+</script>
+
+</html>
